@@ -12,7 +12,6 @@ const Dashboard: React.FC = () => {
         <Routes>
           <Route path="home" element={<AdminHome />} />
           <Route path="students" element={<AdminStudents />} />
-          <Route path="settings" element={<div>Settings Page</div>} />
           <Route index element={<Navigate to="home" />} />
         </Routes>
       </div>
