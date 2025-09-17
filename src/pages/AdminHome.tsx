@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import type { Course } from './models/Course';
 
 import React, { useState } from "react";
@@ -178,9 +179,11 @@ const AdminHome: React.FC = () => {
                     {course.endDate}
                   </td>
                   <td className="px-6 py-4">
-                    <button className="px-4 py-2 bg-teal-500 text-white text-sm rounded-lg hover:bg-teal-600 transition-colors">
-                      Ver curso
-                    </button>
+                    <Link to={`/admin/course/${course.id}`}>
+                      <button className="px-4 py-2 bg-teal-500 text-white text-sm rounded-lg hover:bg-teal-600 transition-colors">
+                        Ver curso
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               ))}

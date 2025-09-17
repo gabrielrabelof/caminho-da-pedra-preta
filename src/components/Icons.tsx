@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserMinus, Mail, UserPlus, XCircle } from 'lucide-react';
 
 export const ArrowLeftIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
   <svg className={className} xmlns="http://www.w.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
@@ -65,4 +66,20 @@ export const HeadIcon: React.FC<{ className?: string }> = ({ className = "w-16 h
              <path d="M12 11c2 0 3.5 1.5 3.5 3.5V15"></path>
         </svg>
     </IconWrapper>
+);
+
+export const UserMinusIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
+  <UserMinus className={className} />
+);
+
+export const MailIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
+  <Mail className={className} />
+);
+
+export const UserPlusIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
+  <UserPlus className={className} />
+);
+
+export const XCircleIcon: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
+  <XCircle className={className} />
 );

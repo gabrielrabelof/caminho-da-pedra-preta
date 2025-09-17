@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { LogIn, Mail, Lock } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -13,10 +15,10 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Simulate login
-    navigate("/dashboard");
+  const handleLogin = (role: 'admin' | 'student') => {
+    // In a real app, you'd validate credentials here
+    login(role);
+    navigate("/dashboard/home");
   };
 
   const switchToSignup = () => {
@@ -46,7 +48,7 @@ const Login = () => {
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-6 shadow rounded-2xl sm:px-10">
-          <form className="space-y-6" onSubmit={handleSubmit}>
+          <form className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                 Email
@@ -101,15 +103,26 @@ const Login = () => {
                 </a>
               </div>
             </div>
-            <div>
+            <div className="flex flex-col space-y-4">
               <button
-                type="submit"
+                type="button"
+                onClick={() => handleLogin('admin')}
                 className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors"
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LogIn className="h-5 w-5 text-teal-400 group-hover:text-teal-300" aria-hidden="true" />
                 </span>
-                Entrar
+                Entrar como Admin
+              </button>
+              <button
+                type="button"
+                onClick={() => handleLogin('student')}
+                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+              >
+                <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                  <LogIn className="h-5 w-5 text-indigo-400 group-hover:text-indigo-300" aria-hidden="true" />
+                </span>
+                Entrar como Aluno
               </button>
             </div>
           </form>

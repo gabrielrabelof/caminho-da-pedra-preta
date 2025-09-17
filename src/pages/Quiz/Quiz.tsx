@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import WelcomeScreen from './Welcome';
 import QuestionScreen from './Questions';
@@ -26,6 +27,9 @@ const questions = [
 ];
 
 const Quiz: React.FC = () => {
+  const { quizId } = useParams();
+  console.log(quizId);
+
   const [step, setStep] = useState(0); // 0: welcome, 1-N: questions, N+1: complete
   const [answers, setAnswers] = useState<{[key: number]: string}>({});
   const totalQuestions = questions.length;

@@ -1,23 +1,29 @@
 import React, { useState, ReactNode } from "react";
 import { AuthContext } from "./auth";
 
+interface User {
+  role: 'admin' | 'student';
+}
+
 interface AuthProviderProps {
   children: ReactNode;
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
-  const login = () => {
-    setIsAuthenticated(true);
+  const login = (role: 'admin' | 'student') => {
+    setUser({ role });
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
+    setUser(null);
   };
 
+  const isAuthenticated = !!user;
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
